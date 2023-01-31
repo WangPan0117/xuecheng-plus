@@ -11,5 +11,4 @@ public class XuechengPlusContentApiApplication {
     public static void main(String[] args) {
         SpringApplication.run(XuechengPlusContentApiApplication.class, args);
     }
-
 }
