@@ -15,10 +15,10 @@ import java.util.List;
 class XuechengPlusContentServiceApplicationTests {
 
     @Autowired
-    CourseBaseMapper courseBaseMapper;
+    private CourseBaseMapper courseBaseMapper;
 
     @Autowired
-    CourseCategoryService courseCategoryService;
+    private CourseCategoryService courseCategoryService;
     @Test
     void testCourseBaseMapper() {
         CourseBase courseBase = courseBaseMapper.selectById(1L);
