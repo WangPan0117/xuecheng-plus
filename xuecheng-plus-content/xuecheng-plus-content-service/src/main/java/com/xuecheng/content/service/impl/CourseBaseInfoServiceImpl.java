@@ -16,7 +16,6 @@ import com.xuecheng.content.model.po.CourseMarket;
 import com.xuecheng.content.service.CourseBaseInfoService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -29,10 +28,10 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
     @Resource
     private CourseBaseMapper courseBaseMapper;
 
-    @Autowired
+    @Resource
     private CourseMarketMapper courseMarketMapper;
 
-    @Autowired
+    @Resource
     private CourseCategoryMapper courseCategoryMapper;
 
     @Override
@@ -55,8 +54,7 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         // 获取数据总数
         long total = pageResult.getTotal();
         // 构建结果集
-        PageResult<CourseBase> courseBasePageResult = new PageResult<>(list, total, pageParams.getPageNo(), pageParams.getPageSize());
-        return courseBasePageResult;
+        return new PageResult<>(list, total, pageParams.getPageNo(), pageParams.getPageSize());
     }
 
     /**
@@ -64,7 +62,6 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
      *
      * @param companyId 教学机构id
      * @param dto       课程基本信息
-     * @return
      */
     @Override
     public CourseBaseInfoDto createCourseBase(Long companyId, AddCourseDto dto) {
@@ -139,7 +136,6 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
      * 根据课程id查询课程基本信息，包括基本信息和营销信息
      *
      * @param courseId 课程ID
-     * @return
      */
     private CourseBaseInfoDto getCourseBaseInfo(Long courseId) {
         CourseBase courseBase = courseBaseMapper.selectById(courseId);
