@@ -50,9 +50,9 @@ public class AddCourseDto {
  private String charge;
 
  @ApiModelProperty(value = "价格")
- private BigDecimal price;
+ private float price;
  @ApiModelProperty(value = "原价")
- private BigDecimal originalPrice;
+ private float originalPrice;
 
 
  @ApiModelProperty(value = "qq")
