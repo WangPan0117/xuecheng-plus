@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 
 @Data
 @ApiModel(value="AddCourseDto", description="新增课程基本信息")
