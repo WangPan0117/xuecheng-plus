@@ -147,6 +147,6 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
             courseBaseInfoDto.setStName(stName);
         }
 
-        return null;
+        return courseBaseInfoDto;
     }
 }
