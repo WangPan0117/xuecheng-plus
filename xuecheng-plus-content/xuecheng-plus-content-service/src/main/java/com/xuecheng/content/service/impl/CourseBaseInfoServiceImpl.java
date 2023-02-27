@@ -36,6 +36,9 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
     @Resource
     private CourseCategoryMapper courseCategoryMapper;
 
+    @Resource
+    private CourseMarketServiceImpl courseMarketService;
+
     @Override
     public PageResult<CourseBase> queryCourseBaseList(PageParams pageParams, QueryCourseParamsDto queryCourseParamsDto) {
         //构建查询条件对象
@@ -169,9 +172,8 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         if (!companyId.equals(courseBase_u.getCompanyId())) {
             XueChengPlusException.cast("本机构只允许修改本机构的课程！");
         }
-        return null;
+        return getCourseBaseInfo(courseId);
     }
-
     private CourseBaseInfoDto getCourseBaseInfo(Long courseId) {
         CourseBase courseBase = courseBaseMapper.selectById(courseId);
         CourseMarket courseMarket = courseMarketMapper.selectById(courseId);
