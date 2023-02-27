@@ -172,6 +172,33 @@ public class CourseBaseInfoServiceImpl implements CourseBaseInfoService {
         if (!companyId.equals(courseBase_u.getCompanyId())) {
             XueChengPlusException.cast("本机构只允许修改本机构的课程！");
         }
+        //封装数据
+        //将请求参数拷贝到待修改对象中
+        BeanUtils.copyProperties(editCourseDto,courseBase_u);
+        courseBase_u.setChangeDate(LocalDateTime.now());
+        //更新到数据库
+        courseBaseMapper.updateById(courseBase_u);
+
+        //查询课程营销信息
+        CourseMarket courseMarket = courseMarketMapper.selectById(courseId);
+        if(courseMarket==null){
+            courseMarket = new CourseMarket();
+        }
+
+        //判断是否收费
+        String charge = editCourseDto.getCharge();
+        if(charge.equals("201001")){
+            Float price = editCourseDto.getPrice();
+            if(price == null || price.floatValue()<=0){
+                XueChengPlusException.cast("课程设置了收费价格不能为空且必须大于0");
+            }
+        }
+
+        //将dto中的课程营销信息拷贝至courseMarket对象中
+        BeanUtils.copyProperties(editCourseDto,courseMarket);
+
+        courseMarketService.saveOrUpdate(courseMarket);
+
         return getCourseBaseInfo(courseId);
     }
     private CourseBaseInfoDto getCourseBaseInfo(Long courseId) {
