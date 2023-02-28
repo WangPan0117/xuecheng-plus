@@ -1,11 +1,10 @@
 package com.xuecheng.content.model.dto;
 
 import com.xuecheng.content.model.po.CourseBase;
-import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
-import java.math.BigDecimal;
-
+@EqualsAndHashCode(callSuper = true)
 @Data
 public class CourseBaseInfoDto extends CourseBase {
 

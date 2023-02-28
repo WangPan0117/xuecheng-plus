@@ -6,7 +6,6 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
 
 @Data
 @ApiModel(value="AddCourseDto", description="新增课程基本信息")
@@ -50,9 +49,9 @@ public class AddCourseDto {
  private String charge;
 
  @ApiModelProperty(value = "价格")
- private BigDecimal price;
+ private float price;
  @ApiModelProperty(value = "原价")
- private BigDecimal originalPrice;
+ private float originalPrice;
 
 
  @ApiModelProperty(value = "qq")
